@@ -1,4 +1,4 @@
-<?php
+?php
 $ipnet="172.26.0.2";
 $username="root";
 $password="bebasaja";
@@ -10,3 +10,4 @@ echo "<td>" . $row['COUNT(*)'] . "</td>";
 echo "</tr>";
 }
 ?>
+
