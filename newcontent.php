@@ -1,13 +1,25 @@
-?php
-$ipnet="172.26.0.2";
-$username="root";
-$password="bebasaja";
-$db = "Trucorp";
-$dbh = new PDO("IP=$ipnet;dbname=$db", $username, $password);
-foreach($dbh->query('SELECT COUNT(*) FROM users') as $row) {
-echo "<tr>";
-echo "<td>" . $row['COUNT(*)'] . "</td>";
-echo "</tr>";
-}
-?>
+<?php
+// Create connection
+$ipnet = "172.26.0.2";
+$username = "root";
+$password = "bebasaja";
+$dbname = "Trucorp";
 
+$conn = new mysqli($ipnet, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT COUNT(*) as total FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  $row = $result->fetch_assoc();
+  echo "Total user: " . $row["total"]. "<br>"; 
+} else {
+  echo "0 results";
+}
+$conn->close();
+
+?>
